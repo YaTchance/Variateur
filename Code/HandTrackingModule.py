@@ -28,18 +28,22 @@ class handDetector():
     
     def findPosition(self, img, handNo=0, draw= True) :
         lmlist = [] 
+        myHand = None
         if self.results.multi_hand_landmarks:
            myHand =  self.results.multi_hand_landmarks[handNo]
-        for id, lm in enumerate(myHand.landmark):
-                #print(id, lm)
-                h, w, c = img.shape
-                cx, cy = int(lm.x*w), int(lm.y*h)
-                #print(id, cx, cy)
-                lmlist.append([id, cx ,cy])
-                #if id == 4 :
-                if draw:            #Fait pour desinner le coutonr de la main
-                #    if id == 8 :
-                        cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
+           
+        if myHand is not None:
+
+            for id, lm in enumerate(myHand.landmark):
+                    #print(id, lm)
+                    h, w, c = img.shape
+                    cx, cy = int(lm.x*w), int(lm.y*h)
+                    #print(id, cx, cy)
+                    lmlist.append([id, cx ,cy])
+                    #if id == 4 :
+                    if draw:            #Fait pour desinner le coutonr de la main
+                    #    if id == 8 :
+                            cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
         return lmlist
   
 def main() :
