@@ -48,8 +48,7 @@ while True:
         # Afficher la graduation de couleur
         cv2.rectangle(img, (50, int(length)), (85, 400), color, cv2.FILLED)
 ########################################################################################################################        
-    #if len(lmlist) !=0 :
-    #    print(lmlist[4], lmlist[8])
+  
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
