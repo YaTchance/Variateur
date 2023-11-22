@@ -23,6 +23,7 @@ while True:
     
     x1, y1 = lmlist[4][1], lmlist[4][2]
     x2, y2 = lmlist[8][1], lmlist[8][2]
+    cx, cy = (x1+x2) // 2, (y1+y2)//2
     
     cv2.circle(img, (x1,y1), 10, (255,0,255), cv2.FILLED)
     cv2.circle(img, (x2,y2), 10, (255,0,255), cv2.FILLED)
