@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 import HandTrackingModule as htm
-
+import math
 ##########################################
 wCam, hCam = 1280, 720
 ##########################################
@@ -27,10 +27,17 @@ while True:
     
     cv2.circle(img, (x1,y1), 10, (255,0,255), cv2.FILLED)
     cv2.circle(img, (x2,y2), 10, (255,0,255), cv2.FILLED)
-    cv2.line (img, (x1,y1),(x2,y2), (255,0,0), )
+    cv2.line (img, (x1,y1),(x2,y2), (255,0,0),2 )
+    cv2.circle(img, (cx,cy),10, (255,0,255), cv2.FILLED)
     
-    if len(lmlist) !=0 :
-        print(lmlist[4], lmlist[8])
+    length = math.hypot(x2-x1, y2-y1)
+    print(length)
+    
+    if length <= 40 : 
+        cv2.circle(img, (cx,cy),10, (0,255,0), cv2.FILLED) #Cercle en vert
+    
+    #if len(lmlist) !=0 :
+    #    print(lmlist[4], lmlist[8])
     cTime = time.time()
     fps = 1/(cTime-pTime)
     pTime = cTime
