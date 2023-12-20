@@ -7,7 +7,7 @@ import math
 wCam, hCam = 1280, 720 #Résolution de l'écran
 print(f"Résolution de la de l'écran : {wCam}x{hCam}")
 ##########################################
-
+length = 0
 detector = htm.handDetector(detectionCon=0)
 cTime = 0
 pTime = 0
@@ -27,7 +27,7 @@ while True:
         x2, y2 = lmlist[8][1], lmlist[8][2]
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
 
-           
+        
         length = math.hypot(x2 - x1, y2 - y1)
       
         cv2.circle(img, (x1,y1), 10, (255,0,255), cv2.FILLED)
@@ -63,12 +63,11 @@ while True:
 ########################################################################################################################        
    
     flipped = cv2.flip(img, 2)
+    
     # Affichage de la barre de graduation avec une couleur variable
-
     cv2.putText(flipped, f'{int(length)}', (50, hCam - 10), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
     
-    cv2.putText(flipped, f'FPS: {int(fps)}', (40,50), cv2.FONT_HERSHEY_COMPLEX,
-              1, (255,0,100),2) #Changement de taille d'écriture FPS
+    cv2.putText(flipped, f'FPS: {int(fps)}', (40,50), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0,100),2) #Changement de taille d'écriture FPS
     cv2.imshow("image", flipped)    #Inverser le sens de la vidéo
     
 ########################################################################################################################    
