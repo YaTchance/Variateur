@@ -19,14 +19,17 @@ def calculate_color(length):
     return color
 
 def main():
-    #Initialisation
+    #Initialisation de la résolution de l'écran et des variables
     wCam, hCam = 1280, 720
     print(f"Résolution de la de l'écran : {wCam}x{hCam}")
-
     length = 0
+    
+    #Initialisation du détecteur de mains
     detector = htm.handDetector(detectionCon=0)
     cTime = 0
     pTime = 0
+    
+    #Initialisation de la capture vidéo
     cap = cv2.VideoCapture(0)
     cap.set(3, wCam)
     cap.set(4, hCam)
@@ -50,7 +53,7 @@ def main():
             cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
             cv2.line(img, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
-            #Normalisation de la valeur de length à la plage 0-255
+            #Normalisation de la valeur de la variable "length" de 0-255
             length = int(255 * (length - 40) / (1000 - 40))
             length = max(0, min(255, length))
 
