@@ -86,7 +86,7 @@ def main():
         #Affichage de l'image
         cv2.imshow("image", flipped)
 
-        #Quitter la boucle si la touche 'q' est enfoncée
+        #Quitter la boucle si la touche 'q' est enfoncé
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
