@@ -41,29 +41,29 @@ def main():
         landmark_list = detector.findPosition(img, draw=False)
 
         if len(landmark_list):
-            #Extraction des points clés pour calculer la longueur
+            #Extraction des points clés pour calculer la longueur entre le pouce et l'index
             x1, y1 = landmark_list[4][1], landmark_list[4][2]
             x2, y2 = landmark_list[8][1], landmark_list[8][2]
             cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
 
             length = math.hypot(x2 - x1, y2 - y1)
 
-            #Dessin des points et de la ligne entre eux
+            #Dessine des points et la ligne entre le pouce et l'index
             cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
             cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
             cv2.line(img, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
-            #Normalisation de la valeur de la variable "length" de 0-255
+            #Normalisation de la valeur "length" de 0-255
             length = int(255 * (length - 40) / (1000 - 40))
             length = max(0, min(255, length))
 
             print(length)
 
             try:
-                #Calcul de la couleur en fonction de la longueur
+                #Calcule la couleur en fonction de la longueur
                 color = calculate_color(length)
 
-                #Dessin du cercle au centre et d'un rectangle en bas de l'écran avec la couleur calculée
+                #Dessine un cercle au centre et un rectangle en bas de l'écran avec la couleur calculée
                 cv2.circle(img, (cx, cy), 10, color, cv2.FILLED)
                 cv2.rectangle(img, (50, hCam - int(length)), (100, hCam), color, cv2.FILLED)
             except Exception as e:
@@ -90,7 +90,7 @@ def main():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    #Libération des ressources et fermeture des fenêtres
+    #Sortie de la programmation
     cap.release()
     cv2.destroyAllWindows()
 
